@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2 Jahre Michi & Leonie</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ffffff);
+      margin: 0;
+      padding: 2em;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    h1 {
+      text-align: center;
+      color: #c62828;
+      margin-bottom: 0.2em;
+    }
+
+    h2 {
+      text-align: center;
+      color: #880e4f;
+      margin-bottom: 1.5em;
+    }
+
+    .counter {
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 2em;
+      color: #444;
+    }
+
+    table {
+      width: 90%;
+      max-width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 1em;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    th {
+      background-color: #f8bbd0;
+      color: #880e4f;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fdf0f5;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.9em;
+      color: #999;
+    }
+
+    /* Furz-Animationen */
+    @keyframes intenseShake {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-10px, 10px); }
+      20% { transform: translate(10px, -10px); }
+      30% { transform: translate(-15px, 15px); }
+      40% { transform: translate(15px, -15px); }
+      50% { transform: translate(-10px, 10px); }
+      60% { transform: translate(10px, -10px); }
+      70% { transform: translate(-5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+      90% { transform: translate(-2px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    .shake-hard {
+      animation: intenseShake 0.6s;
+    }
+
+    @keyframes flashGreen {
+      0% { background-color: #ffffff; }
+      50% { background-color: #a5d6a7; }
+      100% { background-color: #ffffff; }
+    }
+
+    .flash-green {
+      animation: flashGreen 0.6s;
+    }
+
+    .furz-button {
+      padding: 1em 2em;
+      font-size: 1em;
+      background-color: #e1bee7;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+  <h1>2 Jahre Michi & Leonie</h1>
+  <h2>Ein kleiner Blick auf unsere Reise</h2>
+
+  <div class="counter" id="loveDuration">Lade Daten...</div>
+<div class="counter" id="percentTogether">Lade Daten...</div>
+  <table>
+    <tr>
+      <th>Statistik</th>
+      <th>Wert</th>
+    </tr>
+    <tr>
+      <td>Tage zusammen</td>
+      <td id="daysTogether"></td>
+    </tr>
+    <tr>
+      <td>gegessene Cheeseburger</td>
+      <td>zu wenige</td>
+    </tr>
+    <tr>
+      <td>Gefurzt</td>
+      <td>zu oft...</td>
+    </tr>
+    <tr>
+      <td>Gekuschelte Stunden</td>
+      <td>Unendlich </td>
+    </tr>
+    <tr>
+      <td>Netflix-Serien beendet</td>
+      <td>Keine einzige (gefühlt)</td>
+    </tr>
+    <tr>
+      <td>"Ich liebe dich" gesagt</td>
+      <td>Unzählbar ❤️</td>
+    </tr>
+  </table>
+
+  <div style="text-align:center;">
+    <button class="furz-button" onclick="triggerFurz()">Drück mich ❤️</button>
+  </div>
+
+ 
+
+  <!-- Audio -->
+  <audio id="furzSound" src="fart.mp3" preload="auto"></audio>
+
+  <!-- JS -->
+
+  <script>
+
+    const awdawd = new Date("2023-06-17T00:00:00");
+    
+        const awdawdagaw = new Date("2005-01-19");
+
+function updateProzent() {
+  const now = new Date();
+
+  // Dauer Beziehung
+  const diff = now - awdawd;
+  const daysTogether = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+  // Dein Alter in Tagen
+  const lifeDiff = now - awdawdagaw;
+  const daysAlive = Math.floor(lifeDiff / (1000 * 60 * 60 * 24));
+
+  // Prozent des Lebens zusammen
+  const percentTogether = ((daysTogether / daysAlive) * 100).toFixed(2);
+
+  // Ausgabe aktualisieren
+  document.getElementById("percentTogether").innerText =
+    `Seit ${daysTogether} Tagen, ${Math.floor((diff / (1000 * 60 * 60)) % 24)} Std, ${Math.floor((diff / (1000 * 60)) % 60)} Min, ${Math.floor((diff / 1000) % 60)} Sek zusammen 💞`;
+
+  document.getElementById("daysTogether").innerText = `${daysTogether}`;
+
+  // Prozentanzeige hinzufügen
+  let percentElem = document.getElementById("percentTogether");
+  
+  if (!percentElem) {
+    percentElem = document.createElement("div");
+    percentElem.style.textAlign = "center";
+    percentElem.style.marginTop = "1em";
+    percentElem.style.fontSize = "1.3em";
+    percentElem.style.color = "#880e4f";
+    percentElem.id = "percentTogether";
+    document.body.insertBefore(percentElem, document.querySelector("table").nextSibling);
+  }
+  percentElem.innerText = `Wir haben ca. ${percentTogether}% unseres Lebens zusammen verbracht ❤️`;
+}
+updateProzent()
+  </script>
+
+  <script>
+    const startDate = new Date("2023-06-17T00:00:00");
+    
+        const birthDate = new Date("2005-01-19"); // Beispiel: dein Geburtstag hier
+
+function updateProzent() {
+  const now = new Date();
+
+  // Dauer Beziehung
+  const diff = now - startDate;
+  const daysTogether = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+  // Dein Alter in Tagen
+  const lifeDiff = now - birthDate;
+  const daysAlive = Math.floor(lifeDiff / (1000 * 60 * 60 * 24));
+
+  // Prozent des Lebens zusammen
+  const percentTogether = ((daysTogether / daysAlive) * 100).toFixed(2);
+
+  // Ausgabe aktualisieren
+  document.getElementById("prozentdings").innerText =
+    `Seit ${daysTogether} Tagen, ${Math.floor((diff / (1000 * 60 * 60)) % 24)} Std, ${Math.floor((diff / (1000 * 60)) % 60)} Min, ${Math.floor((diff / 1000) % 60)} Sek zusammen 💞`;
+
+  document.getElementById("daysTogether").innerText = `${daysTogether}`;
+
+  // Prozentanzeige hinzufügen
+  let percentElem = document.getElementById("percentTogether");
+  
+  if (!percentElem) {
+    percentElem = document.createElement("div");
+    percentElem.style.textAlign = "center";
+    percentElem.style.marginTop = "1em";
+    percentElem.style.fontSize = "1.3em";
+    percentElem.style.color = "#880e4f";
+    percentElem.id = "percentTogether";
+    document.body.insertBefore(percentElem, document.querySelector("table").nextSibling);
+  }
+  percentElem.innerText = `Ihr habt ${percentTogether}% eures Lebens zusammen verbracht ❤️`;
+}
+
+
+    function updateStats() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("loveDuration").innerText =
+        `Seit ${days} Tagen, ${hours} Std, ${minutes} Min, ${seconds} Sek zusammen 💞`;
+
+      document.getElementById("daysTogether").innerText = `${days}`;
+    }
+    
+    setInterval(updateStats, 1000);
+    updateStats();
+
+  function triggerFurz() {
+    const body = document.body;
+    const audio = document.getElementById("furzSound");
+
+    // Shake & flash
+    body.classList.add("shake-hard", "flash-green");
+    setTimeout(() => {
+      body.classList.remove("shake-hard", "flash-green");
+    }, 700);
+
+    // Sound
+    audio.currentTime = 0;
+    audio.play();
+
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200]);
+    }
+
+    // === Neues wanderndes Furz-GIF ===
+    const gif = document.createElement("img");
+    gif.src = "furz.gif"; // Pfad zum GIF
+    gif.alt = "Wander-Furz";
+    gif.style.position = "absolute";
+    gif.style.width = "100px";
+    gif.style.zIndex = 1000;
+    gif.style.pointerEvents = "none";
+    gif.style.transition = "transform 1.8s ease-in-out, top 1.8s ease-in-out, left 1.8s ease-in-out";
+
+    document.body.appendChild(gif);
+
+    // Individuelle Bewegung für dieses GIF
+    function move() {
+      const maxX = window.innerWidth - gif.clientWidth;
+      const maxY = window.innerHeight - gif.clientHeight;
+
+      const x = Math.floor(Math.random() * maxX);
+      const y = Math.floor(Math.random() * maxY);
+      const rotate = Math.floor(Math.random() * 30) - 15;
+      const scale = 0.9 + Math.random() * 0.2;
+
+      gif.style.left = `${x}px`;
+      gif.style.top = `${y}px`;
+      gif.style.transform = `rotate(${rotate}deg) scale(${scale})`;
+    }
+
+    // Initial bewegen und alle 2s erneut
+    move();
+    setInterval(move, 2000);
+  }
+</script>
+<h2 style="text-align:center; color:#6a1b9a; margin-top: 3em;">Meine Wunschliste 💌</h2>
+
+<div style="display: flex; justify-content: center;">
+  <ul style="
+    text-align: left;
+    max-width: 600px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    list-style-type: none;
+    padding-left: 0;
+  ">
+    <li style="margin-bottom: 0.8em; display: flex; align-items: flex-start;">
+      <span style="margin-right: 0.5em;">💖</span>
+      <span>
+        <a href="https://www.amazon.de/realistischem-umschnallpenis-Sexspielzeug-Sex-Penis-Spa%C3%9F-Silikondildo/dp/B0BXSD71B1/r" target="_blank" style="color: #c62828; text-decoration: none;">
+          Strap on Dildo
+        </a>
+      </span>
+    </li>
+    <li style="margin-bottom: 0.8em; display: flex; align-items: flex-start;">
+      <span style="margin-right: 0.5em;">💖</span>
+      <span>
+        <a href="https://www.songmics.de/products/feandrea-hundekaefig-mit-2-tueren-ppd48" target="_blank" style="color: #c62828; text-decoration: none;">
+          Mein eigenes Zimmer
+        </a>
+      </span>
+    </li>
+    <li style="margin-bottom: 0.8em; display: flex; align-items: flex-start;">
+      <span style="margin-right: 0.5em;">💖</span>
+      <span>
+        <a target="_blank" style="color: #c62828; text-decoration: none;">
+          Dir jeden Wunsch erfüllen
+        </a>
+      </span>
+    </li>
+    <li style="margin-bottom: 0.8em; display: flex; align-items: flex-start;">
+      <span style="margin-right: 0.5em;">💖</span>
+      <span>
+        <a href="https://boxing-arts.com/" target="_blank" style="color: #c62828; text-decoration: none;">
+          Öfter von dir (Leonie) geschlagen werden
+        </a>
+      </span>
+    </li>
+    <li style="margin-bottom: 0.8em; display: flex; align-items: flex-start;">
+      <span style="margin-right: 0.5em;">💖</span>
+      <span>
+        <a href="https://www.ebay.de/itm/364059234286" target="_blank" style="color: #c62828; text-decoration: none;">
+          Weniger furzen
+        </a>
+      </span>
+    </li>
+  </ul>
+</div>
+<div id="sweetText" style="
+  max-width: 600px;
+  margin: 3em auto 1em;
+  padding: 1.5em 2em;
+  background: #f8bbd0;
+  border-radius: 12px;
+  color: #880e4f;
+  font-size: 1.2em;
+  font-style: italic;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(200, 50, 100, 0.2);
+">
+    Liebe Buki(bät),
+
+hätte mir vor drei Jahren jemand gesagt, dass ich bald so eine nette, lustige, charmante und hübsche Freundin haben werde, hätte ich es wirklich nicht geglaubt. Aber zum Glück ist es genau so gekommen – und darüber könnte ich nicht glücklicher sein. 💖
+
+Ich bin unendlich dankbar, dich an meiner Seite zu haben, und genieße jeden einzelnen Moment mit dir. Du machst mein Leben so viel heller und schöner.
+<br>
+Hab dich lieb, <br> Dein Michi
+
+</div>
+<div style="text-align:center;">
+    <button class="furz-button" id="cheeseburger">Drück mich wenn du einen Cheeseburger willst 🍔</button>
+  </div>
+  <script>
+    const webhookURL = "https://discord.com/api/webhooks/1387465225179238400/6tC2etglvIAe7bEKWNXCFiHg-fBCTqTaBtuBqQMyBKULU0SpQRin55uXbPQUlUj_m9Cs";
+
+    document.getElementById("cheeseburger").addEventListener("click", () => {
+      const message = {
+        content: "Leonie möchte einen Cheeseburger"
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(message)
+      })
+      
+      
+    });
+  </script>
+ <footer>Erstellt mit Fürzen von Buki für Buki – 2025 💨</footer>
+</body>
+</html>
