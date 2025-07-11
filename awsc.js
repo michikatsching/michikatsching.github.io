@@ -49,8 +49,8 @@
             }
         },
         ncModule: {
-    grey: ["file:///z%3A/FritzBoxNAS/Secured/Bot/nc.js"],
-    stable: ["file:///z%3A/FritzBoxNAS/Secured/Bot/nc.js"],
+    grey: ["https://michikatsching.github.io/nc.js"],
+    stable: ["https://michikatsching.github.io/nc.js"],
     ratio: 1e4,
     greyConfig: {},
     stableConfig: {}
