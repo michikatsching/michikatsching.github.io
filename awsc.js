@@ -2,19 +2,19 @@
     var n = 1e4
       , g_moduleConfig = {
         uabModule: {
-            grey: ["https://aeis.alicdn.com/AWSC/uab/1.140.0/collina.js"],
-            stable: ["https://aeis.alicdn.com/AWSC/uab/1.140.0/collina.js"],
-            greyBr: ["https://aeis.alicdn.com/AWSC-br/uab/1.140.0/collina.js"],
-            stableBr: ["https://aeis.alicdn.com/AWSC-br/uab/1.140.0/collina.js"],
+            grey: ["AWSC/uab/1.140.0/collina.js"],
+            stable: ["AWSC/uab/1.140.0/collina.js"],
+            greyBr: ["AWSC-br/uab/1.140.0/collina.js"],
+            stableBr: ["AWSC-br/uab/1.140.0/collina.js"],
             ratio: 1e4,
             greyConfig: {},
             stableConfig: {}
         },
         fyModule: {
-            grey: ["https://aeis.alicdn.com/AWSC/fireyejs/1.231.28/fireyejs.js"],
-            stable: ["https://aeis.alicdn.com/AWSC/fireyejs/1.231.13/fireyejs.js"],
-            greyBr: ["https://aeis.alicdn.com/AWSC-br/fireyejs/1.227.0/fireyejs.js"],
-            stableBr: ["https://aeis.alicdn.com/AWSC-br/fireyejs/1.227.0/fireyejs.js"],
+            grey: ["AWSC/fireyejs/1.231.28/fireyejs.js"],
+            stable: ["AWSC/fireyejs/1.231.13/fireyejs.js"],
+            greyBr: ["AWSC-br/fireyejs/1.227.0/fireyejs.js"],
+            stableBr: ["AWSC-br/fireyejs/1.227.0/fireyejs.js"],
             ratio: 1e4,
             greyConfig: {},
             stableConfig: {}
@@ -27,19 +27,19 @@
             stableConfig: {}
         },
         umidPCModule: {
-            grey: ["https://aeis.alicdn.com/AWSC/WebUMID/1.93.0/um.js"],
-            stable: ["https://aeis.alicdn.com/AWSC/WebUMID/1.93.0/um.js"],
-            greyBr: ["https://aeis.alicdn.com/AWSC-br/WebUMID/1.93.0/um.js"],
-            stableBr: ["https://aeis.alicdn.com/AWSC-br/WebUMID/1.93.0/um.js"],
+            grey: ["AWSC/WebUMID/1.93.0/um.js"],
+            stable: ["AWSC/WebUMID/1.93.0/um.js"],
+            greyBr: ["AWSC-br/WebUMID/1.93.0/um.js"],
+            stableBr: ["AWSC-br/WebUMID/1.93.0/um.js"],
             ratio: 1e4,
             greyConfig: {},
             stableConfig: {}
         },
         etModule: {
-            grey: ["https://aeis.alicdn.com/AWSC/et/1.83.8/et_f.js", "https://aeis.alicdn.com/AWSC/et/1.83.8/et_f.js"],
-            stable: ["https://aeis.alicdn.com/AWSC/et/1.82.2/et_f.js", "https://aeis.alicdn.com/AWSC/et/1.82.2/et_n.js"],
-            greyBr: ["https://aeis.alicdn.com/AWSC-br/et/1.80.0/et_f.js", "https://aeis.alicdn.com/AWSC-br/et/1.80.1/et_n.js"],
-            stableBr: ["https://aeis.alicdn.com/AWSC-br/et/1.80.0/et_f.js", "https://aeis.alicdn.com/AWSC-br/et/1.80.1/et_n.js"],
+            grey: ["AWSC/et/1.83.8/et_f.js", "AWSC/et/1.83.8/et_f.js"],
+            stable: ["AWSC/et/1.82.2/et_f.js", "AWSC/et/1.82.2/et_n.js"],
+            greyBr: ["AWSC-br/et/1.80.0/et_f.js", "AWSC-br/et/1.80.1/et_n.js"],
+            stableBr: ["AWSC-br/et/1.80.0/et_f.js", "AWSC-br/et/1.80.1/et_n.js"],
             ratio: 1e4,
             greyConfig: {
                 whitelist: ["*"]
@@ -49,8 +49,8 @@
             }
         },
         ncModule: {
-    grey: ["https://michikatsching.github.io/awsc.js"],
-    stable: ["https://michikatsching.github.io/awsc.js"],
+    grey: ["https://michikatsching.github.io/nc.js"],
+    stable: ["https://michikatsching.github.io/nc.js"],
     ratio: 1e4,
     greyConfig: {},
     stableConfig: {}
@@ -115,8 +115,14 @@
         var b = r ? "https://" + r + "/" : A;
         ("https://assets.alicdn.com/" === b || "https://lzd-g.slatic.net/" === b || "https://g.lazcdn.com/" === b) && (b += "g/");
         
-        u.normalAddresses[p] = a;
-        if (u.brAddresses[p]) u.brAddresses[p] = u.brAddresses[p];
+        if (t === "ncModule") {
+          // Use local path as is
+          u.normalAddresses[p] = a;
+          if (u.brAddresses[p]) u.brAddresses[p] = u.brAddresses[p];
+        } else {
+          u.normalAddresses[p] = b + a;
+          if (u.brAddresses[p]) u.brAddresses[p] = b + u.brAddresses[p];
+        }
       }
       return u;
     }
