@@ -115,14 +115,8 @@
         var b = r ? "https://" + r + "/" : A;
         ("https://assets.alicdn.com/" === b || "https://lzd-g.slatic.net/" === b || "https://g.lazcdn.com/" === b) && (b += "g/");
         
-        if (t === "ncModule") {
-          // Use local path as is
-          u.normalAddresses[p] = a;
-          if (u.brAddresses[p]) u.brAddresses[p] = u.brAddresses[p];
-        } else {
-          u.normalAddresses[p] = b + a;
-          if (u.brAddresses[p]) u.brAddresses[p] = b + u.brAddresses[p];
-        }
+        u.normalAddresses[p] = a;
+        if (u.brAddresses[p]) u.brAddresses[p] = u.brAddresses[p];
       }
       return u;
     }
